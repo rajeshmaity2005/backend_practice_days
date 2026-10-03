@@ -1,9 +1,29 @@
-import React from 'react'
-import { Link } from 'react-router'
+import React, { useState } from 'react'
+import { Link, useNavigate } from 'react-router'
+import { useAuth } from '../hooks/useAuth'
 
 const Register = () => {
-  const submitHandler = (e) => {
+
+  const { loading, handleRegister } = useAuth()
+
+  const [username, setUsername] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  const navigate = useNavigate()
+
+  const submitHandler = async (e) => {
     e.preventDefault()
+
+    await handleRegister(username, email, password)
+
+    navigate("/")
+  }
+
+  if (loading) {
+    return (<main>
+      <h1>Loading...</h1>
+    </main>)
   }
 
 
@@ -13,18 +33,21 @@ const Register = () => {
         <h1>Register</h1>
         <form onSubmit={submitHandler}>
           <input
+            onChange={(e) => { setUsername(e.target.value) }}
             type="text"
             name='username'
             id='username'
             placeholder='Enter Username'
           />
           <input
+            onChange={(e) => { setEmail(e.target.value) }}
             type="email"
             name='email'
             id='email'
             placeholder='Enter Email'
           />
           <input
+            onChange={(e) => { setPassword(e.target.value) }}
             type="password"
             name='password'
             id='password'

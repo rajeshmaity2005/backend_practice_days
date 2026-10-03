@@ -52,36 +52,36 @@ async function getPostDetailsController(req, res) {
 
     const post = await postModel.findById(postId)
 
-    if(!post){
+    if (!post) {
         return res.status(404).json({
-            message:'Post not found.'
+            message: 'Post not found.'
         })
     }
 
     const isValidUser = post.user.toString() === userId
 
-    if(!isValidUser){
+    if (!isValidUser) {
         return res.status(403).json({
             message: 'Forbidden Content.'
         })
     }
 
     return res.status(200).json({
-        message:'Post Fetched Successfully',
+        message: 'Post Fetched Successfully',
         post
     })
 
 
 }
 
-async function likePostController(req,res){
+async function likePostController(req, res) {
 
     const username = req.user.username
     const postId = req.params.postId
 
     const post = await postModel.findById(postId)
 
-    if(!post){
+    if (!post) {
         return res.status(404).json({
             message: 'Post not found.'
         })
@@ -98,10 +98,35 @@ async function likePostController(req,res){
     })
 }
 
+async function getFeedController(req, res) {
+
+    const user = req.user
+
+    const posts = await Promise.all((await postModel.find().populate('user').lean())
+        .map(async (post) => {
+
+            const isLiked = await likeModel.findOne({
+                user: user.username,
+                post: post._id
+            })
+
+            post.isLiked = Boolean(isLiked)
+            // post.isLiked = !!isLiked
+
+            return post
+        }))
+
+    res.status(200).json({
+        message: "Posts fetched successfully.",
+        posts
+    })
+}
+
 
 module.exports = {
     createPostController,
     getPostController,
     getPostDetailsController,
-    likePostController
+    likePostController,
+    getFeedController
 }
