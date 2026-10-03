@@ -18,7 +18,6 @@ const Feed = () => {
 
     console.log(feed);
 
-
     return (
         <main className='feed-page'>
             <div className="feed">

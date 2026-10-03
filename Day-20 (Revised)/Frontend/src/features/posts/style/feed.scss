@@ -4,11 +4,9 @@
     justify-content: center;
     align-items: flex-start;
 
-
     .feed {
         max-width: 300px;
         width: 100%;
-
 
         .posts {
             width: 100%;
@@ -26,8 +24,6 @@
             padding-inline: 1rem;
             padding-block: 1rem;
 
-
-
             .user {
                 display: flex;
                 gap: 0.5rem;
@@ -43,7 +39,6 @@
                     background: conic-gradient(from 235deg, #FECA52, #ff2612, #ED24A7, #ff2612, #FECA52) border-box;
                 }
 
-
                 img {
                     width: 2rem;
                     aspect-ratio: 1/1;
@@ -55,7 +50,6 @@
             img {
                 width: 100%;
             }
-
 
             .icons {
                 display: flex;
