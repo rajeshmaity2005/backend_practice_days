@@ -6,7 +6,7 @@
     flex-direction: column;
 
     .feed {
-        max-width: 300px;
+        max-width: 350px;
         width: 100%;
 
         .posts {
@@ -84,6 +84,21 @@
                     border: none;
                     outline: none;
                 }
+            }
+
+            .bottom {
+                .caption {
+                    button {
+                        border: none;
+                        background: transparent;
+                        color: #737373;
+                        font-weight: 600;
+                        cursor: pointer;
+                        padding: 0;
+                        margin-left: 4px;
+                    }
+                }
+
             }
         }
     }

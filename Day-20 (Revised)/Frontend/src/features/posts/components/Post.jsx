@@ -1,6 +1,11 @@
 import React from 'react'
+import { useState } from 'react';
 
 const Post = ({ user, post, loading, handleLike, handleUnLike }) => {
+
+    const [showMore, setShowMore] = useState(false);
+
+    const limit = 50;
 
     const handleClick = async () => {
         post.isLiked ? handleUnLike(post._id) : handleLike(post._id)
@@ -14,7 +19,7 @@ const Post = ({ user, post, loading, handleLike, handleUnLike }) => {
                 </div>
                 <div>
                     <p className='bold'>{user.username}</p>
-                    <p>Instagram user</p>
+                    <p>verified user</p>
                 </div>
             </div>
             <img src={post.imgUrl} alt="" />
@@ -50,7 +55,13 @@ const Post = ({ user, post, loading, handleLike, handleUnLike }) => {
                 </div>
             </div>
             <div className="bottom">
-                <p className="caption">{post.caption}</p>
+                <p className="caption">{showMore ? post.caption : post.caption.slice(0, limit)}
+
+                    {post.caption.length > limit && (
+                        <button onClick={() => setShowMore(!showMore)}>
+                            {showMore? " less" : "... more"}
+                        </button>
+                    )}</p>
             </div>
         </div>
     )
