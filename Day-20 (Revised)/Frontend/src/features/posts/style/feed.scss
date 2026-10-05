@@ -2,7 +2,8 @@
 
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
+    flex-direction: column;
 
     .feed {
         max-width: 300px;
@@ -45,6 +46,14 @@
                     border-radius: 50%;
                     border: 1px solid black;
                 }
+
+                p {
+                    font-size: 0.8rem;
+                }
+
+                .bold {
+                    font-weight: 600;
+                }
             }
 
             img {
@@ -55,21 +64,22 @@
                 display: flex;
                 justify-content: space-between;
 
-                .left{
+                .left {
                     display: flex;
                     gap: 0.75rem;
                 }
 
-                .like{
+                .like {
                     color: red;
                 }
 
-                svg{
+                svg {
                     width: 1rem;
                     aspect-ratio: 1/1;
                     color: white;
                 }
-                button{
+
+                button {
                     background: transparent;
                     border: none;
                     outline: none;
