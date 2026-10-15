@@ -33,3 +33,8 @@ export async function unLikePost(postId) {
     const response = await api.post("/api/posts/unlike/" + postId)
     return response.data
 }
+
+export async function getAllPosts() {
+    const response = await api.get("/api/posts/")
+    return response.data
+}

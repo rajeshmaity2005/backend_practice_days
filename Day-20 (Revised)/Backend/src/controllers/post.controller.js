@@ -35,7 +35,9 @@ async function getPostController(req, res) {
 
     const posts = await postModel.find({
         user: userId
-    })
+    }).populate("user").lean()
+        
+
 
     res.status(200).json({
         message: 'Post Fetched Successfully',
@@ -43,6 +45,31 @@ async function getPostController(req, res) {
     })
 
 
+}
+
+async function getFeedController(req, res) {
+
+    const user = req.user
+
+    const posts = await Promise.all((await postModel.find().populate('user').lean())
+        // const posts = await Promise.all((await postModel.find().populate('user').lean())
+        .map(async (post) => {
+
+            const isLiked = await likeModel.findOne({
+                user: user.username,
+                post: post._id
+            })
+
+            post.isLiked = Boolean(isLiked)
+            // post.isLiked = !!isLiked
+
+            return post
+        }))
+
+    res.status(200).json({
+        message: "Posts fetched successfully.",
+        posts
+    })
 }
 
 async function getPostDetailsController(req, res) {
@@ -129,29 +156,7 @@ async function unLikePostController(req, res) {
     })
 }
 
-async function getFeedController(req, res) {
 
-    const user = req.user
-
-    const posts = await Promise.all((await postModel.find().populate('user').lean())
-        .map(async (post) => {
-
-            const isLiked = await likeModel.findOne({
-                user: user.username,
-                post: post._id
-            })
-
-            post.isLiked = Boolean(isLiked)
-            // post.isLiked = !!isLiked
-
-            return post
-        }))
-
-    res.status(200).json({
-        message: "Posts fetched successfully.",
-        posts
-    })
-}
 
 
 module.exports = {

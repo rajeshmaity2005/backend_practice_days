@@ -3,6 +3,7 @@ import "../style/feed.scss"
 import Post from '../components/Post'
 import { usePost } from '../hooks/usePost'
 import Nav from '../../shared/components/Nav'
+import Footer from '../../shared/components/Footer'
 
 
 const Feed = () => {
@@ -17,7 +18,7 @@ const Feed = () => {
         return (<main><h1>Feed is Loading...</h1></main>)
     }
 
-    console.log(feed);
+    // console.log(feed);
 
     return (
         <main className='feed-page'>
@@ -29,6 +30,7 @@ const Feed = () => {
                     })}
                 </div>
             </div>
+            <Footer />
         </main>
     )
 }

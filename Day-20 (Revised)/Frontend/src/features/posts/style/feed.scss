@@ -4,6 +4,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    padding-top: 3rem;
 
     .feed {
         max-width: 350px;
@@ -14,6 +15,7 @@
             display: flex;
             flex-direction: column;
             gap: 0.1rem;
+            
         }
 
         .post {
@@ -21,9 +23,9 @@
             display: flex;
             flex-direction: column;
             gap: 0.5rem;
-            background-color: #0b0b0b;
+            background-color: #000000;
             padding-inline: 1rem;
-            padding-block: 1rem;
+            padding-top: 1rem;
 
             .user {
                 display: flex;
