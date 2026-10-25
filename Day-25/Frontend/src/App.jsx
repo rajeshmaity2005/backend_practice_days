@@ -1,18 +1,16 @@
-import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import './App.css'
-import FaceExpression from './feature/Expression/components/FaceExpression'
-import TestMediaPipe from './TestMediaPipe'
+import { RouterProvider } from 'react-router'
+import router from './app.routes'
+import "./feature/shared/styles/global.scss"
+import { AuthProvider } from './feature/auth/auth.context'
+
 
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <FaceExpression />
-    // <TestMediaPipe/>
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   )
 }
 
