@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import "../styles/formgroup.scss"
 import { Link, useNavigate } from 'react-router'
-import logo from "../../../assets/logo.png"
+import logo from "../../../assets/logo-white.png"
 import FormGroup from '../components/FormGroup'
 import { useAuth } from '../hooks/useAuth'
 

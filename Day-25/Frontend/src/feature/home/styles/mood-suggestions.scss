@@ -1,0 +1,205 @@
+.mood-suggestions {
+    width: min(1120px, calc(100% - 3rem));
+    margin: 0 auto;
+    padding: 1.5rem 0 2rem;
+
+    .suggestions-header {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .suggestions-eyebrow {
+        margin-bottom: 0.4rem;
+        color: #a7ad9c;
+        font-size: 0.68rem;
+        font-weight: 700;
+        letter-spacing: 0.15em;
+    }
+
+    h2 {
+        color: #f6f7f4;
+        font-size: clamp(1.25rem, 2.5vw, 1.7rem);
+        letter-spacing: -0.045em;
+    }
+
+    .suggestion-count {
+        flex: 0 0 auto;
+        color: #a7ad9c;
+        font-size: 0.8rem;
+    }
+
+    .suggestion-grid {
+        display: grid;
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+        gap: 0.8rem;
+    }
+
+    .suggestion-card {
+        position: relative;
+        display: flex;
+        min-width: 0;
+        flex-direction: column;
+        align-items: stretch;
+        padding: 0.65rem;
+        overflow: hidden;
+        border: 1px solid transparent;
+        border-radius: 0.9rem;
+        background: #1a1d18;
+        color: #f1f3eb;
+        text-align: left;
+        cursor: pointer;
+        transition: border-color 150ms ease, background 150ms ease, transform 150ms ease;
+
+        &:hover,
+        &:focus-visible {
+            transform: translateY(-2px);
+            border-color: #505a3d;
+            background: #24291f;
+        }
+
+        &:focus-visible {
+            outline: 2px solid #c9f277;
+            outline-offset: 2px;
+        }
+
+        img,
+        .suggestion-art-placeholder {
+            width: 100%;
+            aspect-ratio: 1;
+            margin-bottom: 0.75rem;
+            border-radius: 0.6rem;
+            background: #282d23;
+            object-fit: cover;
+        }
+
+        .suggestion-art-placeholder {
+            display: grid;
+            place-items: center;
+            color: #c9f277;
+            font-size: 2.5rem;
+        }
+    }
+
+    .suggestion-card-title,
+    .suggestion-card-artist {
+        display: block;
+        overflow: hidden;
+        padding-right: 0.15rem;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .suggestion-card-title {
+        font-size: 0.85rem;
+        font-weight: 650;
+    }
+
+    .suggestion-card-artist {
+        margin-top: 0.3rem;
+        color: #a7ad9c;
+        font-size: 0.74rem;
+    }
+
+    .suggestion-card-action {
+        position: absolute;
+        top: 0.95rem;
+        right: 0.95rem;
+        display: grid;
+        width: 2rem;
+        height: 2rem;
+        place-items: center;
+        transform: translateY(0.3rem);
+        border-radius: 50%;
+        background: #c9f277;
+        color: #171a15;
+        font-size: 0.75rem;
+        opacity: 0;
+        transition: opacity 150ms ease, transform 150ms ease;
+    }
+
+    .suggestion-card:hover .suggestion-card-action,
+    .suggestion-card:focus-visible .suggestion-card-action {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    .suggestions-toggle {
+        display: flex;
+        width: auto;
+        align-items: center;
+        justify-content: center;
+        gap: 0.55rem;
+        margin: 1rem auto 0;
+        padding: 0.6rem 1rem;
+        border: 0.1rem solid #454c3c;
+        border-radius: 999px;
+        background: transparent;
+        color: #d3f59a;
+        font-size: 0.85rem;
+        cursor: pointer;
+
+        &:hover {
+            border-color: #c9f277;
+            background: #24291f;
+        }
+
+        &:focus-visible {
+            outline: 2px solid #c9f277;
+            outline-offset: 3px;
+        }
+    }
+
+    .suggestions-message {
+        padding: 1.25rem 1rem;
+        border: 1px solid #30342d;
+        border-radius: 0.9rem;
+        background: #1a1d18;
+        color: #a7ad9c;
+        font-size: 0.9rem;
+    }
+
+    .suggestions-error {
+        color: #ff9a9a;
+    }
+}
+
+@media (max-width: 900px) {
+    .mood-suggestions .suggestion-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+    .mood-suggestions {
+        width: min(100% - 1.5rem, 520px);
+
+        .suggestion-grid {
+            display: flex;
+            overflow-x: auto;
+            gap: 0.6rem;
+            margin: 0 -0.75rem;
+            padding: 0.25rem 0.75rem 0.8rem;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: thin;
+            scrollbar-color: #505a3d transparent;
+
+            &::-webkit-scrollbar {
+                height: 0.3rem;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                border-radius: 1rem;
+                background: #505a3d;
+            }
+        }
+
+        .suggestion-card {
+            flex: 0 0 min(42vw, 168px);
+            padding: 0.55rem;
+            scroll-snap-align: start;
+        }
+    }
+}
